@@ -24,36 +24,59 @@ struct GameLiveActivity: Widget {
     var body: some WidgetConfiguration {
         ActivityConfiguration(for: GameAttributes.self) { context in
             // Lock screen/banner UI goes here
-            VStack {
-                Text("Hello")
-            }
-            .activityBackgroundTint(Color.cyan)
-            .activitySystemActionForegroundColor(Color.black)
+            LiveActivityView()
 
         } dynamicIsland: { context in
             DynamicIsland {
                 // Expanded UI goes here.  Compose the expanded UI through
                 // various regions, like leading/trailing/center/bottom
                 DynamicIslandExpandedRegion(.leading) {
-                    Text("Leading")
+                    HStack {
+                        Image ("warriors")
+                            .teamLogoModifier(frame: 40)
+                        Text ("100")
+                            .font(.title)
+                            .fontWeight (.semibold)
+                    }
                 }
                 DynamicIslandExpandedRegion(.trailing) {
-                    Text("Trailing")
+                    HStack {
+                        Text ("88")
+                            .font(.title)
+                            .fontWeight (.semibold)
+                        Image ("bulls")
+                            .teamLogoModifier(frame: 40)
+                    }
                 }
                 DynamicIslandExpandedRegion(.bottom) {
-                    Text("Bottom")
+                    HStack {
+                        Image("warriors")
+                            .teamLogoModifier(frame: 20)
+                        Text("S. Curry drains a 3")
+                    }
                     // more content
                 }
                 DynamicIslandExpandedRegion(.center) {
-                    Text("Center")
+                    Text ("5:24 3Q")
                     // more content
                 }
             } compactLeading: {
-                Text("L")
+                HStack {
+                    Image("warriors")
+                        .teamLogoModifier()
+                    Text("100")
+                        .fontWeight(.semibold)
+                }
             } compactTrailing: {
-                Text("T")
+                HStack {
+                    Text("88")
+                        .fontWeight(.semibold)
+                    Image("bulls")
+                        .teamLogoModifier()
+                }
             } minimal: {
-                Text("Min")
+                Image("warriors")
+                    .teamLogoModifier()
             }
             .widgetURL(URL(string: "http://www.apple.com"))
             .keylineTint(Color.red)
